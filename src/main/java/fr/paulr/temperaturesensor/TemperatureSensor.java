@@ -3,34 +3,33 @@
  */
 package fr.paulr.temperaturesensor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Utilisateur
  */
 public class TemperatureSensor {
-
     private int temperature;
+    private List<TemperatureObserver> observers = new ArrayList<>();
+
+    public void addObserver(TemperatureObserver obs) {
+        observers.add(obs);
+    }
+
+    public void removeObserver(TemperatureObserver obs) {
+        observers.remove(obs);
+    }
 
     public void setTemperature(int temperature) {
         this.temperature = temperature;
-        // Mauvaise pratique : appel direct et rigide
-        displayTemperature();
-        triggerAlarm();
+        notifyObservers();
     }
 
-    private void displayTemperature() {
-        System.out.println("Température actuelle : " + temperature + "°C");
-    }
-
-    private void triggerAlarm() {
-        if (temperature > 30) {
-            System.out.println("Alerte : température trop élevée !");
+    private void notifyObservers() {
+        for (TemperatureObserver obs : observers) {
+            obs.update(temperature);
         }
-    }
-
-    public static void main(String[] args) {
-        TemperatureSensor sensor = new TemperatureSensor();
-        sensor.setTemperature(25);
-        sensor.setTemperature(35);
     }
 }

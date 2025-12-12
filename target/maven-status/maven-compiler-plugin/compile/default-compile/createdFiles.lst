@@ -1,0 +1,5 @@
+fr\paulr\temperaturesensor\TemperatureSensor.class
+fr\paulr\temperaturesensor\TemperatureObserver.class
+fr\paulr\temperaturesensor\Main.class
+fr\paulr\temperaturesensor\DisplayTemperature.class
+fr\paulr\temperaturesensor\TriggerAlarm.class
